@@ -102,8 +102,8 @@ async def update_settings(
     needs_reinit = (
         model_path or
         index_path or
-        current_config.read_chunk_size != read_chunk_size or
-        current_config.extra_convert_size != extra_convert_size
+        (read_chunk_size and current_config.read_chunk_size != read_chunk_size) or
+        (extra_convert_size and current_config.extra_convert_size != extra_convert_size)
     )
 
     update_data = {
